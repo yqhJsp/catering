@@ -1,0 +1,9 @@
+<!--pages/site/products/products.wxml-->
+<import src="../template/template" />
+<view class='session'>
+        <view class='listBox'>
+        <block wx:for="{{list}}" wx:key="key"  wx:for-index="index1" wx:for-item="item1">
+                <template data="{{item1,fileDomain}}" is="indexColumns7"></template>
+        </block>        
+        </view>
+</view>

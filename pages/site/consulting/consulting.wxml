@@ -1,0 +1,59 @@
+<!--立刻咨询-->
+<view class='row'>
+  <view class='consulTitle'>
+    <label>立即预定</label>
+  </view>
+  <view class='order-detail'>
+    <view class='order_table'>
+      <view class='ordertr'>
+        <view class='ordertd'>
+          <view>姓名</view>
+          <input bindinput='nameInput' class='textCont'></input>
+        </view>
+      </view>
+      <view class='ordertr'>
+        <view class='ordertd'>
+          <view>手机</view>
+          <input bindinput='phoneInput' type="number" class='textCont'></input>
+        </view>
+      </view>
+      <view class='ordertr'>
+        <view class='ordertd'>
+          <view>到店日期</view>
+           <view class='textCont'>
+            <picker mode="date" value="{{date}}" bindchange="bindDateChange" class='datePick'>
+            <view class="picker">
+               {{date}}
+            </view>
+            </picker>
+           </view>
+        </view>
+      </view>
+ <view class='ordertr'>
+        <view class='ordertd'>
+          <view>选择时间</view>
+           <view class='textCont'>
+            <picker mode="time" value="{{time}}"  bindchange="bindTimeChange"  class='datePick'>
+            <view class="picker">
+               {{time}}
+            </view>
+            </picker>
+           </view>
+        </view>
+      </view>
+
+ <view class='ordertr'>
+        <view class='ordertd'>
+          <view>就餐人数</view>
+          <input bindinput='numberInput' type="number" class='textCont'></input>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!--保存-->
+        <view class='ordertd'>
+          <button class='mod_btn btn_green' bindtap='shortly'>立即提交</button>
+          <button class='mod_btn btn_red marginLeft' bindtap='telPhone'>一键拨号</button>
+        </view>
+</view>

@@ -1,0 +1,8 @@
+<!--pages/detail/detail.wxml-->
+<include src="../../../common/common.wxml"></include>
+<view class='session'>
+<!-- <view class='title'>{{shortList.title}}</view> -->
+<view class='detail'>
+ <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+</view>
+</view>

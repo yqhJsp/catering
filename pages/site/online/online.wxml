@@ -1,0 +1,146 @@
+<!--pages/mall/classify/page.wxml-->
+<!--主盒子-->
+<!--外卖版-->
+<view class='parcel' wx:if="{{types==2}}">
+  <view class='parcelInfo'>
+    <view class='cover'>
+    <!-- <image class='coverImg' src="{{fileDomain}}{{mainInfo.image}}"></image> -->
+      <image class='coverImg' src="/images/indexImg/6.jpg"></image>
+    </view>
+    <view class='otherInfo'>
+      <view class='dianming'>{{mainInfo.name}}</view>
+      <view class='decs'>
+        <view>
+          <label>送餐时间：{{mainInfo.sendTime}}</label>
+        </view>
+        <view>
+          <label>配送说明：3元配送费，满16元免配送费</label>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="classify_content"  style='height:{{types==2?"70%":"91%"}};margin-top:{{types==2?"260rpx":"0"}}'>
+  <!--左侧栏-->
+  <view class="nav_left">
+    <block wx:for="{{leftData}}" wx:key="key" wx:for-index="index" wx:for-item="item">
+      <view bindtap='cutClass' class="nav_left_items {{fristId == item.id?'tactive':''}}" data-id="{{item.id}}" id="cat_{{index}}_{{item.id}}" bindtap="cutClass">
+        <text>{{item.name}}</text>
+      </view>
+    </block>
+  </view>
+  <!--右侧栏-->
+  <view class="nav_right">
+    <!--分类列表-->
+    <view class="nav_right_items">
+      <!--商品列表 -->
+      <block wx:for="{{rightData}}" wx:key="key" wx:for-index="index" wx:for-item="item">
+        <view class="navigator {{index==rightData.length-1?'':'border'}}">
+          <view class='pro-img'>
+            <image src="{{fileDomain}}{{item.cover}}"></image>
+          </view>
+          <view class='product-info-box'>
+            <text class='shoptitle'>{{item.name}}</text>
+            <text class='futile'>已售{{item.volume==''?0:item.volume}}份</text>
+            <view class='nav_prive'>
+              <label class='red-price'>￥{{item.rules[0].price/100}}</label>
+            </view>
+            <view class='addview'>
+               <view class='selectBtn' bindtap='selectRule' data-id='{{item.id}}' wx:if="{{item.rules.length!=1}}">选规格</view> 
+               <view class="count_control display-flex-row" wx:if="{{item.rules.length==1}}"> 
+              <block wx:for="{{cartList}}" wx:key="key1" wx:for-index="index1" wx:for-item="good">
+                <view class="reduce_btn item_btn {{good.copies!=0&&good.cookId==item.id ? '': 'hidden'}}" bindtap="decreaseGoodToCartFn" data-id="{{item.id}}" data-type="{{item.rules[0].id}}">-</view>
+                <view class="item_num {{good.copies!=0&&good.cookId==item.id ? '': 'hidden'}}">{{good.copies}}</view>
+                 </block>
+                <view class="add_btn item_btn" bindtap="touchOnGoods" data-id="{{item.id}}" data-type="{{item.rules[0].id}}" data-price="{{item.rules[0].price}}" data-rule="{{item.rules[0].name}}"  data-name="{{item.name}}" data-pic="{{item.cover}}">+</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <!--如果无数据，则显示数据-->
+      <view class="nodata_text"  wx:if="{{rightData.length==0}}">暂无数据</view>
+    </view>
+  </view>
+</view>
+
+<!-- 底部悬浮栏 -->
+<view class="detail-nav">
+  <view class="detail_car  {{(totalNum > 0) ? 'acar': ''}}" bindtap="toCar">
+    <label class='badge' wx:if="{{totalNum}}">{{totalNum}}</label>
+    <image src='/images/car.png' class='carIcon'></image>
+  </view>
+  <view bindtap="addCart" class="goods_half_half">
+    <label>￥{{totalPay/100}}</label>
+  </view>
+  <view bindtap="saveOrder" class="goods_half {{(totalPay > 0) ? 'btn_order':''}} " data-type="{{types}}">立即下单</view>
+</view>
+
+<!--弹窗-->
+<view class="commodity_screen" wx:if="{{showModalStatus}}">
+  <view animation="{{animationData}}" class="catalog_area bg_fff {{isHidden == 1 ? 'display-block':'display-none'}}">
+    <view class="catalog_title">
+      <view class="good_dis_title">{{cookRules.name}}</view>
+      <image class="cancel" bindtap="hideModal" src="/images/indexImg/delete.png"></image>
+    </view>
+    <!--规格循环-->
+    <view class="info_choose">
+      <view class="catalog_name">规格:</view>
+      <view class="catalog_items display-flex-row">
+       <block wx:for="{{cookRules.rules}}" wx:key="key1" wx:for-index="index" wx:for-item="item">   
+        <text data-img="" id="{{item.id}}" data-select="{{item.id}}" data-flower-name="" class="catalog_item {{selectRule.id==item.id?'active':''}}" bindtap="chooseFlower">{{item.name}}</text>
+         </block>   
+      </view>
+    </view>
+    <!--底部-->
+    <view class="borderTop"></view>
+    <view class="catalog_count display-flex-row">
+      <view class="catalog_name">
+        <label>￥{{selectRule.price/100}}</label>
+      </view>
+      <view class='addview' style='bottom:20rpx;right:20rpx'>
+         <!-- <block wx:for="{{cartList}}" wx:key="key1" wx:for-index="index1" wx:for-item="good"> -->
+         <!-- <view class="carBtn" bindtap="addCart" data-id="{{cookRules.id}}" data-type="{{selectRule.id}}" data-price="{{selectRule.price}}" data-name="{{cookRules.name}}" data-pic="{{cookRules.cover}}" data-rule="{{selectRule.name}}">选好了</view>-->
+         <view class="count_control display-flex-row">
+           <block wx:for="{{cartList}}" wx:key="key1" wx:for-index="index1" wx:for-item="good"> 
+          <text class="reduce_btn item_btn {{good.copies!=0&&good.cookRuleId==selectRule.id ? '': 'hidden'}}" bindtap="decreaseGoodToCartFn" data-id="{{cookRules.id}}" data-type="{{selectRule.id}}">-</text>
+          <text class="item_num {{good.copies!=0&&good.cookRuleId==selectRule.id ? '': 'hidden'}}">{{good.copies}}</text>
+           </block> 
+          <text class="add_btn item_btn" bindtap="touchOnGoods" data-id="{{cookRules.id}}" data-type="{{selectRule.id}}" data-price="{{selectRule.price}}" data-name="{{cookRules.name}}" data-pic="{{cookRules.cover}}" data-rule="{{selectRule.name}}">+</text>
+        
+        </view>
+      </view>
+    </view>
+    </view>
+  </view>
+<!--购物车弹窗-->
+<view class='car_screen' wx:if="{{showCarStatus&&stuats==1}}" bindtap="hideModal"> </view>
+<view class="car_area {{carHidden == 1 ? 'display-block':'display-none'}}'">
+  <view class='topcar'>
+    <label>已选菜品</label>
+    <label class='empty' bindtap="clearShopCartFn">清空</label>
+  </view>
+  <view class='carContent'>
+    <!--循环-->
+     <block wx:for="{{cartList}}" wx:key="key1" wx:for-index="index" wx:for-item="item">   
+    <view class='carItem'>
+      <view class='td1'>
+      <label>{{item.name}}</label>
+      <view class='red-price' style='font-size:20rpx'>({{item.ruleName}})</view>
+      </view>
+      <view class='td2'>￥{{item.price/100}}</view>
+      <view class='td3'>
+        <view class="count_control display-flex-row" style='margin-top:0'>
+          <text class="reduce_btn item_btn" bindtap="decreaseGoodToCartFn" data-id="{{item.cookId}}" data-type="{{item.cookRuleId}}">-</text>
+          <text class="item_num">{{item.copies}}</text>
+          <text class="add_btn item_btn"  bindtap="addGoodToCartFn" data-id="{{item.cookId}}" data-type="{{item.cookRuleId}}">+</text>
+        </view>
+      </view>
+    </view>
+     </block>
+    <!--end-->
+  </view>
+</view>
+ <!--小球的实现-->
+  <view class="good_box" hidden="{{hide_good_box}}"  style="left: {{bus_x}}px; top: {{bus_y}}px;">
+  </view>  

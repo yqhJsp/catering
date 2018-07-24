@@ -1,0 +1,117 @@
+{
+"extEnable": true,
+"extAppid": "wxde5903fbfadda527",
+"directCommit": false,
+"ext": {
+        "name": "餐饮版小程序",
+        "appid":"wxde5903fbfadda527",
+        "createUserId":1000009
+},
+"extPages": {
+  "pages/site/index/index": {
+        "navigationBarTitleText": ""
+},
+"pages/site/consulting/consulting": {
+  "navigationBarTitleText": "预约包间"
+},
+"pages/site/users/users": {
+  "navigationBarTitleText": "个人中心"
+},
+"pages/site/products/products": {
+  "navigationBarTitleText": "资讯"
+},
+"pages/site/detail/detail": {
+  "navigationBarTitleText": "详情"
+},
+"pages/site/productDetail/productDetail": {
+  "navigationBarTitleText": "详情"
+},
+"pages/site/online/online": {
+  "navigationBarTitleText": "在线点餐"
+},
+"pages/site/caterOrder/caterOrder": {
+  "navigationBarTitleText": "确认下单"
+},
+"pages/site/parcelOrder/parcelOrder": {
+  "navigationBarTitleText": "确认下单"
+},
+"pages/site/address/address": {
+  "navigationBarTitleText": "选择地址"
+},
+"pages/site/compartment/compartment": {
+  "navigationBarTitleText": "选择包间"
+},
+"pages/site/preferential/preferential": {
+  "navigationBarTitleText": "优惠买单"
+},
+"pages/site/orderList/orderList": {
+  "navigationBarTitleText": "订单列表"
+},
+"pages/site/orderDetail/orderDetail": {
+  "navigationBarTitleText": "订单详情"
+},
+"pages/site/preferentList/preferentList": {
+  "navigationBarTitleText": "优惠买单列表"
+},
+"pages/site/fail/fail": {
+  "navigationBarTitleText": "支付失败"
+}
+},
+"pages": [
+  "pages/site/index/index",
+  "common/common",
+  "pages/site/detail/detail",
+  "pages/site/consulting/consulting",
+  "pages/site/products/products",
+  "pages/site/productDetail/productDetail",
+  "pages/site/online/online",
+  "pages/site/users/users",
+  "pages/site/caterOrder/caterOrder",
+  "pages/site/parcelOrder/parcelOrder",
+  "pages/site/address/address",
+  "pages/site/compartment/compartment",
+  "pages/site/preferential/preferential",
+  "pages/site/orderList/orderList",
+  "pages/site/orderDetail/orderDetail",
+  "pages/site/preferentList/preferentList",
+  "pages/site/fail/fail"
+],
+"window": {
+        "backgroundTextStyle": "white",
+        "navigationBarBackgroundColor": "#000000",
+        "navigationBarTitleText": "餐饮版小程序",
+        "navigationBarTextStyle": "white"
+},
+"tabBar": {
+        "color": "#292929",
+        "selectedColor": "#292929",
+        "backgroundColor": "#fff",
+        "borderStyle": "black",
+        "list": [
+          {
+            "pagePath": "pages/site/index/index",
+            "text": "首页",
+            "iconPath": "images/tabbar/home.png",
+            "selectedIconPath": "images/tabbar/icon_home.png"
+          },
+          {
+            "pagePath": "pages/site/products/products",
+            "text": "资讯",
+            "iconPath": "images/tabbar/icon_nor.png",
+            "selectedIconPath": "images/tabbar/icon_sel.png"
+          },
+          {
+            "pagePath": "pages/site/users/users",
+            "text": "个人中心",
+            "iconPath": "images/tabbar/user.png",
+            "selectedIconPath": "images/tabbar/icon_per_sel.png"
+          }
+        ]
+},
+"networkTimeout": {
+        "request": 5000,
+        "connectSocket": 5000,
+        "uploadFile": 5000,
+        "downloadFile": 5000
+}
+}

@@ -1,0 +1,49 @@
+<!--pages/site/preferential/preferential.wxml-->
+<view class='session'>
+  <view class='pretable'>
+    <view class='preTitle'>参与优惠金额</view>
+    <view class='pretr'>
+      <view class='prerow'>参与优惠金额</view>
+      <view class='prerow2'>
+        <input bindinput='prefInput' type="digit" class='preInput' placeholder='询问服务员后输入' placeholder-style="color:#999" value='{{(favourable/100)==0?"":(favourable/100)}}'></input>
+      </view>
+    </view>
+    <view class='noprefent'>
+      <!-- <view class='checkbox_item {{isDefault==1?"active":""}}' data-checks="{{isDefault}}" bindtap='checkedChange'>
+        <checkbox value="" checked="{{isDefault==1?true:false}}" class='carbox' />
+      </view> -->
+      <label>输入不参与优惠金额（如酒水，套餐）</label>
+    </view>
+    <view class='pretr'>
+      <view class='prerow'>不参与优惠金额</view>
+      <view class='prerow2'>
+        <input bindinput='noPrefInput' type="digit" class='preInput' placeholder='询问服务员后输入' placeholder-style="color:#999"></input>
+      </view>
+    </view>
+
+    <view class='pression'>
+      <view class='pretr'>
+        <view class='prerow'>{{mainInfo.discounts/10}}折</view>
+        <view class='prerow2'>
+          <label class='prices'>￥{{zksum}}</label>
+        </view>
+      </view>
+
+      <view class='pretr'>
+        <view class='prerow'>实付款</view>
+        <view class='prerow2'>
+           <label class='prices'>￥{{sfsum}}</label> 
+        </view>
+      </view>
+    </view>
+
+    <!--说明-->
+    <view class='prebottom'>
+     <view class='preTip'>买单说明</view>
+     <view>请与服务员确认后，再买单！注：部分酒水不参与优惠买单</view>
+    </view>
+
+    <!--下单-->
+    <view class='mod_btn' bindtap='savePreferent'>立即提交</view>
+  </view>
+</view>

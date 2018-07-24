@@ -1,0 +1,85 @@
+<!--共用模板-->
+<!--首页栏目的渲染模板1（文字）-->
+<template name="indexColumns1">
+        <view class='mall-list4' data-id='{{item1.id}}' data-type="{{item1.isDetail}}" bindtap='goMaterialsDetail'>
+                <label>
+                        {{item1.detail}}
+                </label>
+        </view>
+</template>
+<!--首页栏目的渲染模板1（双图文）-->
+<template name="indexColumns2">
+        <view class='mall-list2' data-id='{{item1.id}}' data-type="{{item1.isDetail}}" bindtap='goMaterialsDetail'> 
+                <view class='mall-list-img'>
+                        <image src="{{fileDomain}}{{item1.image}}" />
+                </view>
+                <view class='mall_title'>
+                        <label class='mall-listword'>{{item1.title}}</label>
+                </view>
+                <view class='mall-listprice'>
+                  <label wx:if="{{item.subhead!=''}}">{{item1.subhead}}</label> 
+                </view>
+        </view>
+</template>
+
+<!--首页栏目的渲染模板1（单图文）-->
+<template name="indexColumns3">
+        <view class='mall-list3' data-id='{{item1.id}}' data-type="{{item1.isDetail}}" bindtap='goMaterialsDetail'>
+                <view class='mall-list-img'>
+                        <image src="{{fileDomain}}{{item1.image}}"/>
+                        <view class='tuwen-mb'>
+                                <label>{{item1.title}}</label>
+                        </view>
+                </view>
+        </view>
+</template>
+<!--首页栏目的渲染模板1（无边距单图片）data-type="{{item1.isDetail}}"-->
+<template name="indexColumns4">
+        <view class='mall-list5' data-id='{{item1.id}}'  bindtap='goMaterialsDetail' data-type="{{item1.isDetail}}">
+             <image src="{{fileDomain}}{{item1.image}}"  mode="widthFix"></image>
+        </view>
+</template>
+<!--首页栏目的渲染模板1（有边距单图片）data-type="{{item1.isDetail}}"-->
+<template name="indexColumns8">
+        <view class='mall-padding' data-id='{{item1.id}}'  bindtap='goMaterialsDetail' data-type="{{item1.isDetail}}">
+             <image src="{{fileDomain}}{{item1.image}}"  mode="widthFix"></image>
+      
+        </view>
+</template>
+<!--首页栏目的渲染模板（双图片图片）-->
+<template name="indexColumns5">
+        <view class="mall-list6 {{item.columnMaterials.length%2==1&&index1==item.columnMaterials.length-1?'imgWidth':''}}" data-id='{{item1.id}}' data-type="{{item1.isDetail}}" bindtap='goMaterialsDetail'>       
+           <image src="{{fileDomain}}{{item1.image}}" class='mimg'></image>
+        </view>
+</template>
+<!--首页栏目的渲染模板6（三图文）-->
+<template name="indexColumns6">
+        <view class='mall-list' data-id='{{item1.id}}' data-type="{{item1.isDetail}}" bindtap='goMaterialsDetail'>
+                <view class='mall-list-img'>
+                        <image src="{{fileDomain}}{{item1.image}}"/>
+                        <view class='tuwen-mall'>
+                                <label>{{item1.title}}</label>
+                        </view>
+                </view>
+        </view>
+</template>
+<!--产品模板-->
+<template name="indexColumns7">
+        <view class='box' data-id='{{item1.id}}' bindtap='goMaterialsDetail'>
+                        <view class='boxImg'>
+                                <image src='{{fileDomain}}{{item1.image}}'></image>
+                        </view>
+                        <view class='boxcoent'>
+                        <label>{{item1.title}}</label>
+                        </view>
+       </view>
+</template>
+
+<!--视频-->
+<template name="video_1">
+<video src='{{fileDomain}}{{item.url}}' style="width: 100%; height: 100%" id="index{{ index }}" wx:if="{{playIndex==index}}" object-fit="fill"></video>
+</template>
+<template name="video_2">
+ <video src="{{item.url}}" style="width: 100%; height: 100%" object-fit="fill"   id="index{{ index }}" wx:if="{{playIndex==index}}">                  
+</video>
+</template>

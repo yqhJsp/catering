@@ -1,0 +1,18 @@
+<!--pages/site/compartment/compartment.wxml-->
+<import src="../template/template" />
+<view class='session'>
+<view class='comTitle'>请选择包间</view>
+   <block wx:for="{{list}}" wx:key="key" wx:for-index="index" wx:for-item="item">  
+ <view class='combox' id='{{item.id}}' bindtap='goConsult'>
+<view class='mall-list3'>
+                <view class='mall-list-img'>
+                        <image  src="{{fileDomain}}{{item.cover}}" mode="scaleToFill"> </image>
+                        <view class='tuwen-mb'>
+                                <label>{{item.name}}</label>
+                                <label wx:if="{{item.intro!=''}}">{{item.intro}}</label>
+                        </view>
+                </view>
+        </view>
+         </view>
+    </block> 
+</view>

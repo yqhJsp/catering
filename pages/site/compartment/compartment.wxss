@@ -1,0 +1,22 @@
+/* pages/site/compartment/compartment.wxss */
+@import '../template/template.wxss';
+page {
+        background-color: #f5f5f5;
+}
+
+.session {
+  margin: 0 auto;
+  width: 100%;
+}
+.combox {
+  margin-top:20rpx;
+  padding:0 20rpx
+}
+.mall-list3{
+  background-color: #f5f5f5;
+}
+.comTitle{
+padding:30rpx;
+text-align: center;
+font-size:38rpx;
+}

@@ -1,0 +1,76 @@
+/**app.wxss**/
+ @import '/common/common.wxss';
+ @import 'icon.wxss'; 
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box
+} 
+/*复选框样式*/
+.checkbox_item{
+    display: inline-block;
+    margin-right: 5rpx;
+    border: 1px solid #aaa;
+    width: 40rpx;
+    height:40rpx;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.checkbox_item.active {
+    background: #ff9900;
+    position: relative;
+    border-color: #ff9900;
+}
+.checkbox_item.active:after {
+    position: absolute;
+    content: '';
+    width: 20rpx;
+    height: 15rpx;
+    border: 2px solid #ffffff;
+    border-top: none;
+    border-right: none;
+    left: 0.20rem;
+    top: 0.20rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.checkbox_item checkbox {
+    visibility: hidden;
+}
+/*按钮样式*/
+.mod_btn {
+    background: #ff9900;
+    color: #fff;
+    display: block;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    border: 0;
+    margin: 0 auto;
+    width: 96%;
+    height: 92rpx;
+    margin-top: 50rpx;
+    line-height: 92rpx;
+    text-align: center;
+    font-size: 32rpx;
+    border-radius: 8rpx;
+    position: relative;
+}

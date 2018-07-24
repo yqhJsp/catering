@@ -1,0 +1,58 @@
+<view class="caterTop" wx:if="{{scene!=''}}">
+  <label>已点菜品</label>
+</view>
+<!--不通过扫码-->
+<view class="caterCont marginBotom {{scene==''?'':'hidden'}}">
+  <view class='noSqcode'>
+    <input placeholder='填写桌号' bindinput='deskNumber' type="number" class='desk'></input>
+  </view>
+</view>
+<!--end-->
+<view class='caterCont'>
+  <view class='caterTable'>
+    <!--不扫码-->
+    <view class='caterTr' wx:if="{{scene==''}}">
+      <label>已点菜品</label>
+    </view>
+    <!--循环列表-->
+      <block wx:for="{{list.cartList}}" wx:key="key" wx:for-index="index" wx:for-item="item">
+    <view class='caterTr'>
+      <view class='caterImg'>
+        <image src='{{fileDomain}}{{item.cover}}'></image>
+      </view>
+      <view class='caterTitle'>
+        <label>{{item.name}}</label>
+        <!-- <view class='rules fontRed'>微辣</view> -->
+      </view>
+      <view class='caterNum'>
+        <label>x{{item.copies}}</label>
+      </view>
+      <view class='caterPrice'>
+        <label>￥{{item.price/100}}</label>
+      </view>
+    </view>
+    </block>
+    <!--end-->
+  </view>
+  <!--总价格-->
+  <view class='caterBottom'>
+    <label>共{{list.totalNum}}件菜品</label>
+    <label>￥{{list.totalPay/100}}</label>
+  </view>
+</view>
+
+<!--优惠-->
+<view class='caterCont margin20' wx:if="{{mainInfo.discounts!=''}}">
+  <view class='caterTable'>
+    <view class='caterRedun'>
+      <view class='reduction'>优惠折扣</view>
+      <view class='caterPrice'>{{mainInfo.discounts/10}}折</view>
+    </view>
+  </view>
+  <view class='caterBottom'>
+    <label>实付款</label>
+    <label class='fontRed'>￥{{(list.totalPay*(mainInfo.discounts/100))/100}}</label>
+  </view>
+</view>
+<!--支付按钮-->
+<view class='payBtn' bindtap='goPayment' data-discont="{{mainInfo.discounts}}">确认下单</view>

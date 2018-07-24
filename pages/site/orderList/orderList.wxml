@@ -1,0 +1,46 @@
+<!--pages/site/orderList/orderList.wxml-->
+<!--我的订单-->
+<view class='title'>
+  <label>{{type==1?'店内订单':'外卖订单'}}</label>
+</view>
+<!--列表渲染-->
+<view class="content">
+  <!--订单列表-->
+  <view class='order_box'>
+    <block  wx:for="{{list}}" wx:key="key" wx:for-index="index" wx:for-item="item">    
+    <view class='order_shop' bindtap='goOrderDetail' data-id='{{item.id}}'> 
+      <view class='thumbnails'>
+        <image src='{{fileDomain}}{{item.reOrderCooks[0].cookInfo.cover}}' class='thumbnails_img'></image>
+      </view>
+      <view class='item_tip'>
+        <view class='order_dis_title'>
+          <text>订单号：{{item.id}}</text>
+        </view>
+        <view class='order_rulse'>
+          <text>时间：{{item.createTime}}</text>
+        </view>
+        <view class='order_rulse'>
+          <text>数量：{{item.copies}}</text>
+        </view>
+        <view class='order_rulse' wx:if="{{type==2}}">
+          <text>配送地址:</text>
+           <text>{{item.address.address}}</text>
+        </view>
+        <view class='order_dis_price'>
+          <text class='red'>总价格：￥{{item.sum/100}}</text>
+        </view>
+      </view>
+      <view class='order-clun'>
+        <label class='red' wx:if="{{item.status==2}}">已完成</label>
+        <label class='red' wx:if="{{item.status==1}}">待付款</label>
+        <view class='btn-order' catchtap='goPay' id='{{item.id}}' data-sum="{{item.sum}}" wx:if="{{item.status==1}}">立即付款</view>
+      </view>
+    </view>
+      </block>  
+  </view>
+  <!--end-->
+</view>
+<!--无数据时-->
+<view class="tab-content1" wx:if="{{hidden}}">
+  <image src='/images/indexImg/nodata.png' class='tab-image'></image>
+</view>

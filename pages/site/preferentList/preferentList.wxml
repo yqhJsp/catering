@@ -1,0 +1,37 @@
+<!--优惠买单列表-->
+<view class='title'>
+  <label>优惠买单</label>
+</view>
+<!--列表渲染-->
+<view class="content">
+  <!--订单列表-->
+  <view class='order_box'>
+     <block  wx:for="{{list}}" wx:key="key" wx:for-index="index" wx:for-item="item">     
+    <view class='order_shop'> 
+      <view class='item_tip'>
+       <view class='order_rulse'>
+          <text class='rulesTitle'>参与优惠金额：</text>
+          <text>￥{{item.intPrice/100}}</text>
+        </view>
+        <view class='order_rulse'>
+          <text class='rulesTitle'>不参与优惠金额：</text>
+          <text>￥{{item.outPrice/100}}</text>
+        </view>
+        <view class='order_rulse'>
+          <text class='rulesTitle'>折扣：</text>
+           <text>{{item.discounts/10}}</text>
+        </view>
+         <view class='order_rulse'>
+          <text class='rulesTitle'>实际付款：</text>
+           <text class='red'>￥{{item.realPrice/100}}</text>
+        </view>
+      </view>
+    </view>
+       </block>   
+  </view>
+  <!--end-->
+</view>
+<!--无数据时-->
+<view class="tab-content1" wx:if="{{hidden}}">
+  <image src='/images/indexImg/nodata.png' class='tab-image'></image>
+</view>

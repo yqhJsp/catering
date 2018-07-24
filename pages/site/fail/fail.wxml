@@ -1,0 +1,109 @@
+<!--待支付-->
+<view class='row'>
+        <view class='order-detail'>
+                <view class='order_table'>
+                        <view class='ordertr'>
+                                <view class='ordertd'>
+                                        <view class='tip'>
+                                                <label>商品尚支付失败，请在
+                                                        <label class='red-price'>15分钟内</label>完成支付，逾期未支付订单将自动取消哦！</label>
+                                        </view>
+                                </view>
+                                <view class='ordertd orderTip'>
+                                        <image src="/images/indexImg/fail.png" class='fail_img'></image>
+                                </view>
+                        </view>
+
+                </view>
+        </view>
+        <view class='order-detail' wx:if="{{types==2}}">
+                <view class='order_table'>
+                        <view class='ordertr'>
+                                <view class='ordertd'>
+                                        配送信息：
+                                        <label>{{address.name}}</label>
+                                        <label style='margin-left:20rpx'>{{address.phone}}</label>
+                                </view>
+                        </view>
+                        <view class='ordertr'>
+                                <view class='ordertd'>
+                                 配送地址：                               
+                                <label>{{address.address}}</label> 
+                                </view>
+                        </view>
+                      
+                </view>
+        </view>
+
+        <!--已选菜品-->
+        <view class='order-detail'>
+                <view class='order_table'>
+                        <view class='ordertr borders'>
+                                <view class='ordertd'>
+                                       已选菜品
+                                </view>
+                        </view>
+                        <!--列表-->
+                        <block  wx:for="{{order.reOrderCooks}}" wx:key="key" wx:for-index="index" wx:for-item="item">    
+                        <view class="order_one">
+                                <view id="{{item.id}}"  class="navigator  {{order.reOrderCooks.length-1!=index?'borders':''}}">
+                                        <view class='pro-img'>
+                                                <image src="{{fileDomain}}{{item.cookInfo.cover}}"></image>
+                                                 <!-- / <image src="{{fileDomain}}{{item.product.imageIds.split(',')[0]}}"></image> -->
+                                        </view>
+                                        <view class='product-info-box'>
+                                                <text class='shoptitle'>{{item.cookInfo.name}}</text>
+                                                <text class='futile'>{{item.cookRule.name}}</text>
+                                                <view class='nav_prive'>
+                                                        <label class='red-price'>￥{{item.cookRule.price/100}}</label>
+                                                        <label class='little-icon fr'>x{{item.copies}}</label>
+                                                </view>
+                                        </view>
+
+                                </view>
+                        </view>
+                         </block>
+                </view>
+        </view>
+        <!--点单编号-->
+        <view class='order-detail'>
+                <view class='order_table'>
+                        <view class='ordertr'>
+                                <view class='ordertd'>
+                                        订单编号：
+                                        <label>{{order.id}}</label>
+                                </view>
+                        </view>
+                        <view class='ordertr'>
+                                <view class='ordertd'>
+                                        订单时间：
+                                        <text>{{order.createTime}}</text>
+                                </view>
+                        </view>
+                </view>
+        </view>
+        <!--按钮事件-->
+        <view class='order-detail noborder'>
+                <view class='addressbun'>
+                        <view class='goback' bindtap='goPay'>马上去支付</view>
+                </view>
+        </view>
+</view>
+<!--取消订单得弹窗-->
+<modal class="modal" wx:if="{{showModalStatus}}" showCancel="true" bindconfirm="modalOk" confirmText="确定" confirmColor="#F04528" bindcancel="hideModal">
+        <view class="dew">
+        <view class='modelTitle'>请选择原因</view>
+                <view class="po_w">
+                        <view class="list">
+                        <block wx:for="{{list}}" wx:key="name" wx:for-index="idx" wx:for-item="itemName">
+                        <view class="li {{resonId==idx+1? 'liactive' : ''}}"  data-idx="{{idx}}" bindtap="chooseRson">
+                                        <lable>{{itemName}}</lable>
+                                         <view class="other" wx:if="{{resonId==6&&idx==6}}">
+                                         <textarea data-tag="comment-text" maxlength="100" style='color:#333'></textarea>
+                                        </view>
+                                </view>
+                        </block>
+                        </view>
+                </view>
+           </view>     
+</modal>

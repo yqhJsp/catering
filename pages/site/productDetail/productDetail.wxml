@@ -1,0 +1,10 @@
+<!--产品信息-->
+<include src="../../../common/common.wxml"></include>
+<view class='session'>
+        <!-- <view class='p-title'>
+                <label>{{product.title}}</label>
+        </view> -->
+        <view class='p-content'>
+             <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+        </view>
+</view>

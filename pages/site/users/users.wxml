@@ -1,0 +1,34 @@
+<!--pages/users/users.wxml-->
+<view class="session">
+        <view class="userinfo">
+                  <image class="userinfo-avatar" src="{{info.avatarUrl}}" background-size="cover"></image>  
+                <text class="userinfo-nickname">{{info.nickName}}</text>
+                <view class="account-bg"></view>
+        </view>
+        <view class="line"></view>
+        <view class="person-list">
+                <view class="list-item" bindtap='getOrder' data-id="1">
+               <image src='/images/indexImg/user-zx.png' class='adIcon'></image>
+                        <text class="item-text">店内订单</text>
+                        <label class="item-map"> > </label>
+                      
+                </view>
+                <view class="list-item" bindtap='getOrder' data-id="2" wx:if="{{mainInfo.type==2&&mainInfo.isOutCook==1}}">
+                <image src='/images/indexImg/user-wm.png' class='adIcon'></image>
+                        <text class="item-text">外卖订单</text>
+                        <label class="item-map"> > </label>
+                    
+                </view>
+                <view class="list-item" bindtap='getPreferent'>
+                 <image src='/images/indexImg/user-yh.png' class='adIcon'></image>
+                        <text class="item-text">优惠买单</text> 
+                        <label class="item-map"> > </label>
+                </view>
+                <view class="list-item" bindtap='goAddress' wx:if="{{mainInfo.type==2&&mainInfo.isOutCook==1}}">
+                <image src='/images/indexImg/user-dz.png' class='adIcon'></image>
+                        <text class="item-text">地址管理</text>
+                        <label class="item-map"> > </label>
+                </view>
+        </view>
+        <view class="separate"></view>
+</view>

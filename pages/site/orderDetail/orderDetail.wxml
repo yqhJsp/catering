@@ -1,0 +1,115 @@
+<!--pages/site/orderDetail/orderDetail.wxml-->
+<!--订单详情-->
+<view class='row order'>
+        <view class='order-detail'>
+                <view class='order_table'>
+                        <view class='ordertr'>
+                                <view class='ordertd'>
+                                        订单信息
+                                </view>
+                        </view>
+                        <view class='ordertr'>
+                                <view class='ordertd ortitle'>
+                                        订单号
+                                </view>
+                                <view class='ordertd'>
+                                        <text>{{oneOrder.id}}</text>
+                                </view>
+                        </view>
+                        <view class='ordertr'>
+                                <view class='ordertd ortitle'>
+                                        下单时间
+                                </view>
+                                <view class='ordertd'>
+                                        <text>{{oneOrder.createTime}}</text>
+                                </view>
+                        </view>
+                        <view class='ordertr'>
+                                <view class='ordertd ortitle'>
+                                        订单状态
+                                </view>
+                                <view class='ordertd'>
+                                        <text wx:if="{{oneOrder.status==1}}">待付款</text>
+                                        <text wx:if="{{oneOrder.status==2}}">已完成</text>
+                                        <text wx:if="{{oneOrder.status==3}}">已取消</text>
+                                        <text wx:if="{{oneOrder.status==4}}">付款失败</text>
+                                        <text wx:if="{{oneOrder.status==5}}">退款</text>
+                        
+                                </view>
+                        </view>
+                        <!--优惠买单-->
+                        <view class='ordertr'>
+                                <view class='ordertd ortitle'>
+                                        实际付款
+                                </view>
+                                <view class='ordertd'>
+                                        <text>￥{{oneOrder.sum/100}}</text>
+                                </view>
+                        </view>
+                </view>
+        </view>
+         <!--配送地址-->
+        <view class='order-detail' wx:if="{{type==2}}">
+                <view class='order_table'>
+                        <view class='ordertr'>
+                                <view class='ordertd'>
+                                        配送信息
+                                </view>
+                        </view>
+                        <view class='ordertr'>
+                                <view class='ordertd ortitle'>
+                                        收货人：
+                                </view>
+
+                                <view class='ordertd'>
+                                        <view>
+                                                <text>{{oneOrder.address.name}}</text>
+                                                <text class='payname'>{{oneOrder.address.phone}}</text>
+                                        </view>
+                                </view>
+                        </view>
+
+                        <view class='ordertr'>
+                                <view class='ordertd ortitle'>
+                                        配送地址:
+                                </view>
+                                       <view class='ordertd'>
+                                        <view>
+                                                <text>{{oneOrder.address.address}}</text>
+                                              
+                                        </view>
+                                </view>
+                       </view>
+                </view>
+        </view>
+         <!--购物清单-->
+        <view class='order-detail'>
+                <view class='order_table'>
+                        <view class='ordertr borders'>
+                                <view class='ordertd'>
+                                        购买清单
+                                </view>
+                        </view>
+                        <!--列表-->
+                       <block wx:for="{{oneOrder.reOrderCooks}}" wx:key="key" wx:for-index="index" wx:for-item="item">   
+                        <view class='order_one'>
+                           <view class="navigator {{oneOrder.reOrderCooks.length-1!=index?'borders':''}}">
+                                <view class='pro-img'>
+                                        <image  src='{{fileDomain}}{{item.cookInfo.cover}}'></image>
+                                </view>
+                                <view class='product-info-box'>    
+                                        <view class='nav_prive'>
+                                                <label>{{item.cookInfo.name}}</label>
+                                                <label class='nav_prive red-price'>({{item.cookRule.name}})</label>
+                                        </view>
+                                </view>
+                                <view class='orderNum'><label>x{{item.copies}}</label></view>
+                                 <view class='orderNum little-icon'><label>￥{{item.cookRule.price/100}}</label></view>
+                             </view>
+                        </view>
+                        </block> 
+                </view>
+        </view>
+</view>
+ <view class='goback' bindtap='goHome' wx:if="{{oneOrder.status!=1}}">返回店铺</view>
+  <view class='goback' bindtap='goPay' id="{{oneOrder.id}}" data-sum="{{oneOrder.sum}}" wx:if="{{oneOrder.status==1}}">立即支付</view>

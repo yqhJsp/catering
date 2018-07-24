@@ -1,0 +1,48 @@
+/* pages/site/preferential/preferential.wxss */
+.pretable{
+  padding:0 30rpx;      
+  background-color: #fff;
+  font-size:28rpx;
+}
+.preTitle{
+font-size:28rpx;
+padding:30rpx 0 15rpx 0;
+}
+.pretr{
+ padding:0 20rpx;
+  display: flex;
+  font-size:28rpx;
+  height:90rpx;
+  line-height:90rpx;
+  justify-content: space-between;
+  background-color: #f5f5f5;
+  margin-top:10rpx;    
+}
+.pretr .prerow{
+width:40%;
+}
+.pretr .prerow2{
+width:60%;
+text-align:right
+}
+.preInput{
+ height:90rpx;
+ line-height:90rpx;
+ border: 0 
+}
+.noprefent{
+ margin:40rpx 0 20rpx 0;
+ font-size:28rpx; 
+}
+.pression{
+  margin-top:60rpx;
+}
+.prebottom{
+margin:80rpx 0;
+}
+.preTip{
+font-size:30rpx;
+}
+.prices{
+  color: red
+}

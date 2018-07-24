@@ -1,0 +1,141 @@
+<!--pages/site/index/index.wxml-->
+<import src="../template/template" />
+<!--container-->
+<view class="section">
+  <!--banner轮播图-->
+  <view>
+    <swiper indicator-dots="false" autoplay="false" interval="3000" duration="500" class='view_banner' circular="true">
+      <block wx:for="{{banners}}" wx:key="key" wx:for-index="index" wx:for-item="item">
+        <swiper-item>
+          <image src="{{fileDomain}}{{item.image}}" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!--end-->
+  <!--address-->
+  <view class='view_address'>
+    <view class='logo' bindtap='getlocation'>
+      <image src='/images/indexImg/daohang.png'></image>
+    </view>
+    <view class='address-row' bindtap='getlocation'>
+      <view class='shopName'>{{mainInfo.name}}</view>
+      <view class='addressName'>{{mainInfo.address}}</view>
+    </view>
+    <view class='map-row'>
+      <image src='/images/indexImg/phone.png' bindtap='goCall' data-type="{{mainInfo.phone}}"></image>
+    </view>
+  </view>
+
+  <!--快捷入口wx:if="{{mainInfo.isShopCook==1}}"-->
+  <view class='view_channel'>
+     <view class='channel_list' bindtap='gonlies' data-type='1'  wx:if="{{mainInfo.isShopCook==1}}"> 
+    <image class='channel_bg' src="/images/indexImg/bg.png"></image>
+      <view class='channel_item'>
+        <view class='view-img' id='{{item.id}}' data-type="{{item.isDetail}}">
+          <image src="/images/indexImg/diannei.png"></image>
+        </view>
+        <view class='shopTitle'>
+          <view class='cellspan'>店内点餐</view>
+          <view class='futitle'>the shop order</view>
+        </view>
+      </view>
+    </view>
+    <!--wx:if="{{mainInfo.isRoom==1}}"-->
+     <view class='channel_list'  bindtap='proceed' wx:if="{{mainInfo.isRoom==1}}">
+      <image class='channel_bg' src="/images/indexImg/bg_2.png"></image>
+      <view class='channel_item'>
+        <view class='view-img' id='{{item.id}}' data-type="{{item.isDetail}}">
+          <image src="/images/indexImg/yuding.png"></image>
+        </view>
+        <view class='shopTitle'>
+          <view class='cellspan'>预定包间</view>
+          <view class='futitle'>booking roomsr</view>
+        </view>
+      </view>
+    </view>
+  <!--wx:if="{{mainInfo.isOutCook==1}}"-->
+     <view class='channel_list' bindtap='gonlie' data-type='2' wx:if="{{mainInfo.isOutCook==1}}">
+      <image class='channel_bg' src="/images/indexImg/bg_3.png"></image>
+      <view class='channel_item'>
+        <view class='view-img' id='{{item.id}}' data-type="{{item.isDetail}}" >
+          <image src="/images/indexImg/waimai.png"></image>
+        </view>
+        <view class='shopTitle'>
+          <view class='cellspan'>外卖配送</view>
+          <view class='futitle'>delivering and distribution</view>
+        </view>
+      </view>
+    </view>
+ <!--wx:if="{{mainInfo.isOfferPay==1}}"-->
+     <view class='channel_list' bindtap='preferent' wx:if="{{mainInfo.isOfferPay==1}}">
+      <image class='channel_bg' src="/images/indexImg/bg_4.png"></image>
+      <view class='channel_item'>
+        <view class='view-img' id='{{item.id}}' data-type="{{item.isDetail}}">
+          <image src="/images/indexImg/youhui.png"></image>
+        </view>
+        <view class='shopTitle'>
+          <view class='cellspan'>优惠买单</view>
+          <view class='futitle'>the shop order</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--end-->
+  <!--店内信息-->
+  <view class='store'>
+   <view class="storeItem {{mainInfo.isOutCook==2&&mainInfo.isOutCook==2?'':'sborder'}}" wx:if="{{mainInfo.isShopCook==1}}">
+   <view class='storeIcon'>
+   <image src='/images/indexImg/yingye.png' class='iconImg'></image>
+   </view>
+   <view class='storeTitle'><label>店内点餐</label></view>
+   <view class='storeDate'><label>{{mainInfo.businessHours}}  每天</label></view>
+   </view>
+
+    <view class='storeItem sborder' wx:if="{{mainInfo.isOutCook==1}}">
+   <view class='storeIcon'>
+   <image src='/images/indexImg/wai.png' class='iconImg'></image>
+   </view>
+   <view class='storeTitle'><label>外卖范围</label></view>
+   <view class='storeDate'><label>{{mainInfo.scope}}公里</label></view>
+   </view>
+
+    <view class='storeItem' wx:if="{{mainInfo.isOutCook==1}}">
+   <view class='storeIcon'>
+   <image src='/images/indexImg/songcan.png' class='iconImg'></image>
+   </view>
+   <view class='storeTitle'><label>送餐时间</label></view>
+   <view class='storeDate'><label>{{mainInfo.sendTime}}  每天</label></view>
+   </view>
+   <!--end-->
+  </view>
+  <!--栏目-->
+  <view class='view-table-view'>
+    <block wx:for="{{columns}}" wx:key="key" wx:for-index="index" wx:for-item="item" wx:if="{{item.isShow==1}}">
+      <view class='nav-list'>
+        <view class='view-list-title' wx:if="{{item.isTitle==1}}">
+          <label>{{item.title}}</label>
+          <label class='clumname' wx:if="{{item.subhead!=''}}">{{item.subhead}}</label>
+        </view>
+        <view class='view-mall' style="margin:{{item.showType==1004?'0':'0 20rpx'}};padding:{{item.showType==1004?'0':'10rpx 0'}}">
+          <block wx:for="{{item.columnMaterials}}" wx:key="key1" wx:for-index="index1" wx:for-item="item1">
+            <template data="{{item1,fileDomain}}" wx:if="{{item.showType==1001}}" is="indexColumns1"></template>
+            <template data="{{item1,fileDomain}}" wx:if="{{item.showType==1002}}" is="indexColumns2"></template>
+            <template data="{{item1,fileDomain}}" wx:if="{{item.showType==1003}}" is="indexColumns3"></template>
+            <template data="{{item1,fileDomain}}" wx:if="{{item.showType==1004}}" is="indexColumns4"></template>
+            <template data="{{item1,fileDomain,item,index1}}" wx:if="{{item.showType==1005}}" is="indexColumns5"></template>
+            <template data="{{item1,fileDomain}}" wx:if="{{item.showType==1006}}" is="indexColumns6"></template>
+             <template data="{{item1,fileDomain}}" wx:if="{{item.showType==1007}}" is="indexColumns8"></template>
+          </block>
+        </view>
+      </view>
+      <view class="{{item.showType==1004?'':'border'}}"></view>
+    </block>
+  </view>
+  <!--立即咨询-->
+
+  <!-- <view class='app-info'>
+    <label class='goxun' bindtap='goCounsel' wx:if="{{mainInfo.isCounsel==1}}">立即咨询</label>
+    <label class='give-phone ' wx:if="{{mainInfo.isCall==1}}" data-type="{{mainInfo.phone}}">致电我们</label>
+  </view> -->
+</view>

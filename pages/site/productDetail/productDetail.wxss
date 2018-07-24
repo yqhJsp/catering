@@ -1,0 +1,34 @@
+/* pages/productDetail/productDetail.wxss */
+
+.session {
+  display: box;
+  width: 100%;
+  margin: 0;
+}
+
+.p-title {
+  text-align: center;
+  font-size: 48rpx;
+  color: #000;
+  margin: 30rpx 0 50rpx 0;
+  padding: 0 30rpx;
+}
+
+.p-title label {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis;
+  -moz-text-overflow: ellipsis;
+}
+
+.p-content {
+  padding: 0;
+}
+
+.p-content view {
+  font-size: 28rpx;
+}
