@@ -21,7 +21,7 @@
     "pages/site/fail/fail"
   ],
   "window": {
-    "backgroundTextStyle": "white",
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#000000",
     "navigationBarTitleText": "餐饮版小程序",
     "navigationBarTextStyle": "white"
